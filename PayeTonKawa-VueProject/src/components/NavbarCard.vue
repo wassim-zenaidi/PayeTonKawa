@@ -2,9 +2,9 @@
     <header>
       <nav>
         <ul>
-          <li><a href="#">Accueil</a></li>
-          <li><a href="#">Produits</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/Products">Produits</router-link></li>
+          <li><router-link to="/Contact">Contact</router-link></li>
         </ul>
       </nav>
        <AuthCard></AuthCard>

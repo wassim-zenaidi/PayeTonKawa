@@ -1,18 +1,12 @@
 <template>
   <div>
-    <NavbarCard></NavbarCard>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 
-import NavbarCard from './components/NavbarCard.vue';
 
-export default {
-  components: {
-    NavbarCard,
-  }
-};
 </script>
 
 <style scoped>
