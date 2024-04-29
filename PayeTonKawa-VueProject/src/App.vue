@@ -10,5 +10,5 @@
 </script>
 
 <style scoped>
-/* Ajoutez vos styles ici si nécessaire */
+
 </style>

@@ -2,10 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import Products from './components/Products.vue';
 import Contact from './components/Contact.vue';
-import Home from './components/Home.vue'; // Correction du nom du composant
+import Home from './components/Home.vue'; 
 
 const routes = [
-  { path: '/', component: Home }, // Utilisation de Accueil au lieu de Acceuil
+  { path: '/', component: Home }, 
   { path: '/Products', component: Products },
   { path: '/Contact', component: Contact },
 ];
