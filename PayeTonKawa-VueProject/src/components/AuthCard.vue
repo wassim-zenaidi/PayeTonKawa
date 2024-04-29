@@ -2,9 +2,6 @@
     <div>
       <div v-if="isAuthenticated">
         <button @click="logout" class="auth-button logout">Logout</button>
-        <h2>{{ user.name }}</h2>
-        <h2>{{ user.email }}</h2>
-        <h2>{{ user.picture }}</h2>
       </div>
       <div v-else>
         <button @click="login" class="auth-button login">Login</button>

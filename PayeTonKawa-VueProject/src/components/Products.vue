@@ -2,6 +2,7 @@
   <div>
     <NavbarCard></NavbarCard>
     <h1>Produits</h1>
+    
   </div>
 </template>
 
@@ -17,5 +18,4 @@ export default {
 </script>
 
 <style scoped>
-/* Ajoutez vos styles ici si nécessaire */
 </style>
