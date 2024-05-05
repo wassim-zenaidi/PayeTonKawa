@@ -79,10 +79,10 @@ nav ul li a:hover {
 
 /* Style pour le footer */
 footer {
-  background-color: #f5f5f2; /* Marron noisette */
-  color: #cfa78e;
+  background-color: #cfa78e; /* Marron noisette */
+  color: #ffffff;
   text-align: center;
-  padding: 20px;
+  padding: 5px;
   position: fixed;
   bottom: 0;
   width: 100%;

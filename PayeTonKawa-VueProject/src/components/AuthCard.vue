@@ -1,10 +1,10 @@
 <template>
     <div>
       <div v-if="isAuthenticated">
-        <button @click="logout" class="auth-button logout">Logout</button>
+        <button @click="logout" class="auth-button logout">Logout 👥</button>
       </div>
       <div v-else>
-        <button @click="login" class="auth-button login">Login</button>
+        <button @click="login" class="auth-button login">Login 👥</button>
       </div>
     </div>
   </template>
