@@ -16,5 +16,5 @@ app.use(
   })
 );
 
-app.use(router); // Utilisez le routeur ici
+app.use(router); 
 app.mount('#app');

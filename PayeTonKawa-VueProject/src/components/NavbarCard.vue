@@ -12,7 +12,7 @@
   </template>
   
   <script>
-  // Importez le composant AuthCard
+
   import AuthCard from './AuthCard.vue';
   
   export default {
@@ -23,9 +23,7 @@
   </script>
   
   <style scoped>
-  /* Import du fichier de style de base */
-  
-  /* Style spécifique pour la navbar */
+ 
   header {
     background-color: #cfa78e;
     padding: 20px;
