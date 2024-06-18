@@ -62,7 +62,7 @@ export default {
   border-top-right-radius: 10px;
 }
 
-/* Style pour les détails du café */
+/* Style pour les détails du cafée */
 .cafe-details {
   padding: 15px;
   background-color: #fff;
