@@ -9,7 +9,7 @@
           <p class="cafe-price">{{ cafe.price }}</p>
           <p class="cafe-stock">En stock: {{ cafe.stock }}</p>
         </div>
-        <button class="buy-button" @click="redirectToPurchase(cafe)">Acheter</button>
+        <button class="buy-button" @click="addToCart(cafe)">Ajouter au panier</button>
       </div>
     </div>
   </div>
@@ -23,26 +23,27 @@ export default {
   data() {
     return {
       cafes: [
-        { name: "Café Arabica", image: "src/img/cafe1.webp", description: "Café Arabica pur, doux et aromatique.", price: "$12.99", stock: 10 },
-        { name: "Café Robusta", image: "src/img/cafe2.webp", description: "Café Robusta corsé avec un arrière-goût fort.", price: "$10.99", stock: 5 },
-        { name: "Café Latté", image: "src/img/cafe3.jpeg", description: "Café Latté avec une mousse onctueuse.", price: "$14.99", stock: 8 },
-        { name: "Café Moka", image: "src/img/cafe4.webp", description: "Café Moka avec des notes de chocolat.", price: "$11.99", stock: 12 },
+        { name: "Café Arabica", image: "src/img/cafe1.webp", description: "Café Arabica pur, doux et aromatique.", price: "$12.99", stock: 10, cartQuantity: 0 },
+        { name: "Café Robusta", image: "src/img/cafe2.webp", description: "Café Robusta corsé avec un arrière-goût fort.", price: "$10.99", stock: 5, cartQuantity: 0 },
+        { name: "Café Latté", image: "src/img/cafe3.jpeg", description: "Café Latté avec une mousse onctueuse.", price: "$14.99", stock: 8, cartQuantity: 0 },
+        { name: "Café Moka", image: "src/img/cafe4.webp", description: "Café Moka avec des notes de chocolat.", price: "$11.99", stock: 12, cartQuantity: 0 },
         // Ajoutez d'autres cafés ici
       ]
     };
   },
   methods: {
-    redirectToPurchase(cafe) {
-      // Remplacez l'URL par la page de commande ou de paiement réelle
-      const purchaseUrl = `/purchase?product=${encodeURIComponent(cafe.name)}`;
-      window.location.href = purchaseUrl;
+    addToCart(cafe) {
+      if (cafe.stock > 0) {
+        cafe.cartQuantity++;
+        cafe.stock--;
+      }
     }
   }
 };
 </script>
 
 <style scoped>
-/* Style pour la galerie */
+/* Styles pour la galerie */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -112,7 +113,7 @@ export default {
   font-size: 0.9rem;
 }
 
-/* Style pour le bouton acheter */
+/* Style pour le bouton ajouter au panier */
 .buy-button {
   background-color: #cfa78e;
   color: white;
@@ -122,6 +123,7 @@ export default {
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 
 .buy-button:hover {
