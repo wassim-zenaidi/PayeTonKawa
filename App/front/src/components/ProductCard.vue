@@ -9,7 +9,9 @@
           <p class="cafe-price">{{ cafe.price }}</p>
           <p class="cafe-stock">En stock: {{ cafe.stock }}</p>
         </div>
-        <button class="buy-button" @click="addToCart(cafe)">Ajouter au panier</button>
+        <div class="button-group">
+          <router-link tag="button" class="buy-button" @click="buy(cafe)" to="/Store">Acheter</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -32,11 +34,21 @@ export default {
     };
   },
   methods: {
-    addToCart(cafe) {
-      if (cafe.stock > 0) {
-        cafe.cartQuantity++;
-        cafe.stock--;
-      }
+    buy(cafe) {
+      axios.post('/api/purchase', {
+        name: cafe.name,
+        price: cafe.price,
+        quantity: cafe.cartQuantity
+      })
+      .then(response => {
+        console.log('Achat réussi:', response.data);
+        // Réinitialiser la quantité dans le panier après achat réussi
+        cafe.cartQuantity = 0;
+      })
+      .catch(error => {
+        console.error('Erreur lors de l\'achat:', error);
+        // Gérer l'erreur ou afficher un message à l'utilisateur
+      });
     }
   }
 };
@@ -113,7 +125,14 @@ export default {
   font-size: 0.9rem;
 }
 
-/* Style pour le bouton ajouter au panier */
+/* Style pour le groupe de boutons */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Style pour le bouton acheter */
 .buy-button {
   background-color: #cfa78e;
   color: white;
@@ -123,7 +142,9 @@ export default {
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.3s ease;
-  margin-top: 10px;
+  text-decoration: none; /* Supprime le soulignement du lien */
+  display: inline-block; /* Rend le bouton prendre la largeur du texte */
+  outline: none; /* Supprime la bordure par défaut */
 }
 
 .buy-button:hover {
