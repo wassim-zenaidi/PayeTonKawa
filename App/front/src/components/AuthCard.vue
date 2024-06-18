@@ -35,7 +35,7 @@
   /* Styles pour les boutons de connexion et de déconnexion */
   .auth-button {
     background-color: #fff; /* Couleur de fond */
-    color: #cfa78e; /* Couleur du texte */
+    color: #262525; /* Couleur du texte */
     border: none; /* Pas de bordure */
     padding: 10px 20px; /* Remplissage */
     font-size: 1rem; /* Taille de police */

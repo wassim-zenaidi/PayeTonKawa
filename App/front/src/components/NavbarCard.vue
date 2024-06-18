@@ -25,7 +25,7 @@
   <style scoped>
  
   header {
-    background-color: #cfa78e;
+    background-color: #262525;
     padding: 20px;
     display: flex;
     justify-content: space-between;
