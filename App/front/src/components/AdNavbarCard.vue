@@ -2,9 +2,9 @@
     <header>
       <nav>
         <ul>
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/Products">Produits</router-link></li>
-          <li><router-link to="/Contact">Contact</router-link></li>
+          <li><router-link to="/AdPage">Dashboard</router-link></li>
+          <li><router-link to="/AdPage">Inventaires</router-link></li>
+          <li><router-link to="/AdPage">Clients</router-link></li>
         </ul>
       </nav>
        <AuthCard></AuthCard>
@@ -55,7 +55,7 @@
   }
   
   nav ul li a:hover {
-    color: #cfa78e;
+    color: #f3e5d9;
   }
   
   .user-options a {

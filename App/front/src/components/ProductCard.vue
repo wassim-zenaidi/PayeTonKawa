@@ -10,7 +10,12 @@
           <p class="cafe-stock">En stock: {{ cafe.stock }}</p>
         </div>
         <div class="button-group">
-          <router-link tag="button" class="buy-button" @click="buy(cafe)" to="/Store">Acheter</router-link>
+          <router-link 
+            :to="{ name: 'PurchasePage', params: { cafeId: index } }"
+            class="buy-button"
+          >
+            Acheter
+          </router-link>
         </div>
       </div>
     </div>
@@ -18,38 +23,17 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   name: "ProductCard",
   data() {
     return {
       cafes: [
-        { name: "Café Arabica", image: "src/img/cafe1.webp", description: "Café Arabica pur, doux et aromatique.", price: "$12.99", stock: 10, cartQuantity: 0 },
-        { name: "Café Robusta", image: "src/img/cafe2.webp", description: "Café Robusta corsé avec un arrière-goût fort.", price: "$10.99", stock: 5, cartQuantity: 0 },
-        { name: "Café Latté", image: "src/img/cafe3.jpeg", description: "Café Latté avec une mousse onctueuse.", price: "$14.99", stock: 8, cartQuantity: 0 },
-        { name: "Café Moka", image: "src/img/cafe4.webp", description: "Café Moka avec des notes de chocolat.", price: "$11.99", stock: 12, cartQuantity: 0 },
-        // Ajoutez d'autres cafés ici
+        { name: "Café Arabica", image: "src/img/cafe1.webp", description: "Café Arabica pur, doux et aromatique.", price: "$12.99", stock: 10 },
+        { name: "Café Robusta", image: "src/img/cafe2.webp", description: "Café Robusta corsé avec un arrière-goût fort.", price: "$10.99", stock: 5 },
+        { name: "Café Latté", image: "src/img/cafe3.jpeg", description: "Café Latté avec une mousse onctueuse.", price: "$14.99", stock: 8 },
+        { name: "Café Moka", image: "src/img/cafe4.webp", description: "Café Moka avec des notes de chocolat.", price: "$11.99", stock: 12 },
       ]
     };
-  },
-  methods: {
-    buy(cafe) {
-      axios.post('/api/purchase', {
-        name: cafe.name,
-        price: cafe.price,
-        quantity: cafe.cartQuantity
-      })
-      .then(response => {
-        console.log('Achat réussi:', response.data);
-        // Réinitialiser la quantité dans le panier après achat réussi
-        cafe.cartQuantity = 0;
-      })
-      .catch(error => {
-        console.error('Erreur lors de l\'achat:', error);
-        // Gérer l'erreur ou afficher un message à l'utilisateur
-      });
-    }
   }
 };
 </script>
