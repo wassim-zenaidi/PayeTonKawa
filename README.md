@@ -28,8 +28,11 @@ Front-end Web : Interface utilisateur développée en HTML, CSS et Bootstrap pou
 Les API sont réparties dans plusieurs dépôts :
 
 [customer_api](https://gitlab.com/l_osaki/customer_api)
+
 [order_api](https://gitlab.com/l_osaki/order_api)
+
 [product_api](https://gitlab.com/l_osaki/product_api)
+
 [stock_api](https://gitlab.com/l_osaki/stock_api)
 
 ## Installation et Exécution
