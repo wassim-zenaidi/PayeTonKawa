@@ -10,27 +10,35 @@ Le principal objectif de ce projet est de développer une solution applicative f
 
 Les technologies utilisées dans ce projet sont les suivantes :
 
-- Langage de Programmation : Java avec Spring Boot pour le backend.
-- Base de Données : SQL Database.
-- Frontend : HTML, CSS, Bootstrap.
-- Outils de Développement : Docker pour le déploiement, utilisation de Git pour la gestion de version.
+Langage de Programmation : Node.js.
+Base de Données : MYSQL.
+Frontend : HTML, CSS, Vue.js.
+Outils de Développement : Docker pour le déploiement, utilisation de Git pour la gestion de version.
 
 ## Structure du Projet
 
 Le projet est organisé en plusieurs parties :
 
-1. **Back-end API** : Contient les API REST développées en Java avec Spring Boot.
-2. **Base de Données** : Contient les schémas de base de données SQL utilisés par le système.
-3. **Front-end Web** : Interface utilisateur développée en HTML, CSS et Bootstrap pour interagir avec les API.
+Back-end API : Contient les API REST développées en Java avec Spring Boot.
+Base de Données : Contient les schémas de base de données SQL utilisés par le système.
+Front-end Web : Interface utilisateur développée en HTML, CSS et Bootstrap pour interagir avec les API.
+
+## Répertoires des API
+
+Les API sont réparties dans plusieurs dépôts :
+
+[customer_api](https://gitlab.com/l_osaki/customer_api)
+[order_api](https://gitlab.com/l_osaki/order_api)
+[product_api](https://gitlab.com/l_osaki/product_api)
+[stock_api](https://gitlab.com/l_osaki/stock_api)
 
 ## Installation et Exécution
 
 Pour installer et exécuter ce projet sur votre propre machine, suivez ces étapes :
 
 1. Clonez ce dépôt sur votre machine locale.
-2. Assurez-vous d'avoir Java et Docker installés sur votre système.
-3. Démarrez l'application en exécutant les commandes appropriées.
-4. Accédez à l'interface utilisateur via votre navigateur web.
+2. Démarrez l'application en exécutant les commandes appropriées.
+3. Accédez à l'interface utilisateur via votre navigateur web.
 
 
 ## Licence
