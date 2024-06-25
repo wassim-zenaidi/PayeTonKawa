@@ -6,6 +6,7 @@ import Home from './components/HomePage.vue';
 import Store from './components/StorePage.vue'; 
 import PurchasePage from './components/PurchasePage.vue';
 import AdPage from './components/AdPage.vue';
+import CustomerPage from './components/CustomerPage.vue';
 
 
 const routes = [
@@ -14,6 +15,7 @@ const routes = [
   { path: '/Contact', component: Contact },
   { path: '/Store', component: Store },
   { path: '/AdPage', component: AdPage },
+  { path: '/CustomerPage', component: CustomerPage },
   { path: '/PurchasePage', name: 'PurchasePage', component: PurchasePage },
 ];
 

@@ -1,1 +1,0 @@
-![image](/uploads/8ac330ab4c2c140c10618d4c2144cac6/image.png){width=889 height=483}

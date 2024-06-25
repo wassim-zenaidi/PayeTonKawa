@@ -4,7 +4,7 @@
         <ul>
           <li><router-link to="/AdPage">Dashboard</router-link></li>
           <li><router-link to="/AdPage">Inventaires</router-link></li>
-          <li><router-link to="/AdPage">Clients</router-link></li>
+          <li><router-link to="/CustomerPage">Clients</router-link></li>
         </ul>
       </nav>
        <AuthCard></AuthCard>

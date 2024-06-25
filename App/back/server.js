@@ -1,22 +1,50 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const sql = require('mssql');
 const cors = require('cors');
-
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
+// Chaîne de connexion à SQL Server
+const dbConfig = {
+    user: 'ptk',
+    password: 'Payetonkawa44',
+    server: 'ptk-serv.database.windows.net',
+    database: 'ptk',
+    options: {
+        encrypt: true,
+        trustServerCertificate: false
+    }
+};
 
-// routes (par exemple, les endpoints API)
-app.get('/api/produits', (req, res) => {
-  // Implémenter la logique pour récupérer les produits depuis votre base de données
-  // Renvoyer les produits au format JSON
-  res.json({ produits: [] });
+// Middleware pour analyser les requêtes JSON et configurer CORS
+app.use(express.json());
+app.use(cors()); // Permet toutes les origines
+
+// Connexion à la base de données
+sql.connect(dbConfig).then(pool => {
+    if (pool.connecting) {
+        console.log('Connexion à la base de données en cours...');
+    }
+    if (pool.connected) {
+        console.log('Connecté à la base de données');
+    }
+
+    // Route pour obtenir les données de la table "customers"
+    app.get('/customers', async (req, res) => {
+        try {
+            const request = pool.request();
+            const result = await request.query('SELECT first_name, last_name, mail FROM customers');
+            res.status(200).json(result.recordset);
+        } catch (err) {
+            console.error('Erreur lors de la récupération des données:', err);
+            res.status(500).send('Erreur lors de la récupération des données');
+        }
+    });
+
+}).catch(err => {
+    console.error('Erreur de connexion à la base de données:', err);
 });
 
-// Lancer le serveur
 app.listen(port, () => {
-  console.log(`Serveur en cours d'exécution sur le port ${port}`);
+    console.log(`Serveur en écoute sur le port ${port}`);
 });
