@@ -1,21 +1,32 @@
 <template>
   <div class="gallery">
-    <div v-for="(product) in products" :key="product.id" class="cafe-item">
+    <div v-for="(product) in products" :key="product.id" class="cafe-item" :class="{ 'out-of-stock': product.stock === 0 }">
       <img :src="product.image" :alt="product.name" class="cafe-image">
       <div class="cafe-details">
         <h2 class="cafe-name">{{ product.name }}</h2>
         <p class="cafe-description">{{ product.description }}</p>
         <div class="cafe-price-stock">
-          <p class="cafe-price">{{ product.price }}</p>
-          <p class="cafe-stock">En stock: {{ product.stock }}</p>
+          <p class="cafe-price">{{ product.price }} €</p> <!-- Ajout de "€" après le prix -->
+          <p class="cafe-stock" :class="{ 'out-of-stock': product.stock === 0 }">
+            En stock: {{ product.stock }}
+          </p>
         </div>
         <div class="button-group">
-          <router-link 
-            :to="{ name: 'PurchasePage', params: { cafeId: product.id } }"
-            class="buy-button"
-          >
+          <button @click="openPurchaseModal(product)" class="buy-button" :disabled="product.stock === 0">
             Acheter
-          </router-link>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal pour la sélection de la quantité -->
+    <div v-if="showModal" class="modal">
+      <div class="modal-content">
+        <h3>Choisissez la quantité à acheter :</h3>
+        <input type="number" v-model.number="quantity" min="1" :max="selectedProduct.stock">
+        <div class="modal-buttons">
+          <button @click="closeModal">Annuler</button>
+          <button @click="confirmPurchase">OK</button>
         </div>
       </div>
     </div>
@@ -29,7 +40,10 @@ export default {
   name: "ProductCard",
   data() {
     return {
-      products: []  // Initialisation vide pour les données de produits
+      products: [],  // Initialisation vide pour les données de produits
+      showModal: false,
+      selectedProduct: null,
+      quantity: 1,
     };
   },
   async mounted() {
@@ -41,7 +55,43 @@ export default {
       console.error('Erreur lors de la récupération des produits depuis le backend:', error);
       alert('Erreur lors de la récupération des produits');
     }
-  }
+  },
+  methods: {
+    openPurchaseModal(product) {
+      this.selectedProduct = product;
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    async confirmPurchase() {
+      try {
+        const productId = this.selectedProduct.id;
+        const newStock = this.selectedProduct.stock - this.quantity;
+
+        if (newStock < 0) {
+          alert('Stock insuffisant.');
+          return;
+        }
+
+        // Effectuer l'achat via une API backend, par exemple avec une requête POST ou PUT
+        const response = await axios.put(`http://localhost:5174/adproducts/${productId}`, {
+          stock: newStock
+        });
+
+        if (response.status === 200) {
+          alert(`Achat de ${this.quantity} ${this.selectedProduct.name}(s) effectué.`);
+          this.selectedProduct.stock = newStock; // Mettre à jour localement le stock du produit
+          this.closeModal();
+        } else {
+          alert('Erreur lors de l\'achat.');
+        }
+      } catch (error) {
+        console.error('Erreur lors de l\'achat du produit:', error);
+        alert('Erreur lors de l\'achat du produit');
+      }
+    },
+  },
 };
 </script>
 
@@ -116,6 +166,10 @@ export default {
   font-size: 0.9rem;
 }
 
+.cafe-stock.out-of-stock {
+  color: red;
+}
+
 /* Style pour le groupe de boutons */
 .button-group {
   display: flex;
@@ -138,7 +192,69 @@ export default {
   outline: none; /* Supprime la bordure par défaut */
 }
 
+.buy-button:disabled {
+  background-color: #ccc; /* Couleur de fond grise pour le bouton désactivé */
+  cursor: not-allowed; /* Curseur interdit */
+}
+
+.buy-button:hover:disabled {
+  background-color: #ccc; /* Au survol, la couleur reste grise */
+}
+
 .buy-button:hover {
+  background-color: #b58976;
+}
+
+/* Style pour la modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.modal input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-buttons button {
+  background-color: #cfa78e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.modal-buttons button:hover {
   background-color: #b58976;
 }
 </style>
