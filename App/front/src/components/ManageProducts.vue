@@ -118,7 +118,14 @@ export default {
       // Logique pour la mise à jour d'un produit
     },
     async deleteProduct(productId) {
-      // Logique pour la suppression d'un produit
+      try {
+        await productService.deleteProduct(productId);
+        alert('Produit supprimé avec succès!');
+        await this.fetchProducts(); // Rafraîchir la liste des produits après suppression
+      } catch (error) {
+        console.error(`Erreur lors de la suppression du produit avec ID ${productId}:`, error);
+        alert('Erreur lors de la suppression du produit');
+      }
     },
     clearForm() {
       this.newProduct = {
@@ -132,6 +139,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 .manage-products-container {

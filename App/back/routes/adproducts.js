@@ -52,5 +52,31 @@ module.exports = (pool) => {
         }
     });
 
+    // Route pour supprimer un produit par son ID
+    router.delete('/:id', async (req, res) => {
+        const productId = req.params.id;
+
+        try {
+            const request = pool.request();
+            await request
+                .input('id', sql.Int, productId)
+                .query('DELETE FROM products WHERE id = @id');
+            
+            // Vérifier si une ligne a été affectée pour confirmer la suppression
+            if (request.rowsAffected[0] === 0) {
+                console.log(`Produit avec ID ${productId} non trouvé`);
+                return res.status(404).send(`Produit avec ID ${productId} non trouvé`);
+            }
+
+            // Log success message
+            console.log(`Produit avec ID ${productId} supprimé avec succès`);
+            res.status(200).send(`Produit avec ID ${productId} supprimé avec succès`);
+        } catch (err) {
+            // Log error message
+            console.error('Erreur lors de la suppression du produit:', err);
+            res.status(500).send('Erreur lors de la suppression du produit');
+        }
+    });
+
     return router;
 };

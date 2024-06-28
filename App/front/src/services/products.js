@@ -35,7 +35,15 @@ const productService = {
     }
   },
 
-  // D'autres méthodes pour mettre à jour ou supprimer des produits peuvent être ajoutées ici
+  async deleteProduct(productId) {
+    try {
+      const response = await apiClient.delete(`/adproducts/${productId}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Erreur lors de la suppression du produit avec ID ${productId}:`, error);
+      throw error;
+    }
+  }
 };
 
 export default productService;
