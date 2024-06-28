@@ -37,20 +37,33 @@ module.exports = (pool) => {
     });
 
     // Route pour sélectionner tous les produits
-    router.get('/', async (req, res) => {
-        try {
-            const request = pool.request();
-            const result = await request.query('SELECT * FROM products');
-            
-            // Log the retrieved data
-            console.log('Produits récupérés:', result.recordset);
-            res.status(200).json(result.recordset);
-        } catch (err) {
-            // Log error message
-            console.error('Erreur lors de la récupération des produits:', err);
-            res.status(500).send('Erreur lors de la récupération des produits');
+router.get('/', async (req, res) => {
+    try {
+        const request = pool.request();
+        const result = await request.query('SELECT * FROM products');
+        
+        // Vérifier si des produits ont été récupérés
+        if (result.recordset.length === 0) {
+            console.log('Aucun produit trouvé');
+            return res.status(404).send('Aucun produit trouvé');
         }
-    });
+
+        // Ajouter l'image par défaut pour chaque produit si l'image n'est pas spécifiée
+        const productsWithDefaultImage = result.recordset.map(product => ({
+            ...product,
+            image: product.image || 'src/img/cafe1.webp'  // Ajoute l'image par défaut si l'image n'est pas définie
+        }));
+
+        // Log the retrieved data
+        console.log('Produits récupérés:', productsWithDefaultImage);
+        res.status(200).json(productsWithDefaultImage);
+    } catch (err) {
+        // Log error message
+        console.error('Erreur lors de la récupération des produits:', err);
+        res.status(500).send('Erreur lors de la récupération des produits');
+    }
+});
+
 
     // Route pour supprimer un produit par son ID
     router.delete('/:id', async (req, res) => {

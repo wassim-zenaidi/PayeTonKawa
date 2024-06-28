@@ -1,17 +1,17 @@
 <template>
   <div class="gallery">
-    <div v-for="(cafe, index) in cafes" :key="index" class="cafe-item">
-      <img :src="cafe.image" :alt="cafe.name" class="cafe-image">
+    <div v-for="(product) in products" :key="product.id" class="cafe-item">
+      <img :src="product.image" :alt="product.name" class="cafe-image">
       <div class="cafe-details">
-        <h2 class="cafe-name">{{ cafe.name }}</h2>
-        <p class="cafe-description">{{ cafe.description }}</p>
+        <h2 class="cafe-name">{{ product.name }}</h2>
+        <p class="cafe-description">{{ product.description }}</p>
         <div class="cafe-price-stock">
-          <p class="cafe-price">{{ cafe.price }}</p>
-          <p class="cafe-stock">En stock: {{ cafe.stock }}</p>
+          <p class="cafe-price">{{ product.price }}</p>
+          <p class="cafe-stock">En stock: {{ product.stock }}</p>
         </div>
         <div class="button-group">
           <router-link 
-            :to="{ name: 'PurchasePage', params: { cafeId: index } }"
+            :to="{ name: 'PurchasePage', params: { cafeId: product.id } }"
             class="buy-button"
           >
             Acheter
@@ -23,17 +23,24 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "ProductCard",
   data() {
     return {
-      cafes: [
-        { name: "Café Arabica", image: "src/img/cafe1.webp", description: "Café Arabica pur, doux et aromatique.", price: "$12.99", stock: 10 },
-        { name: "Café Robusta", image: "src/img/cafe2.webp", description: "Café Robusta corsé avec un arrière-goût fort.", price: "$10.99", stock: 5 },
-        { name: "Café Latté", image: "src/img/cafe3.jpeg", description: "Café Latté avec une mousse onctueuse.", price: "$14.99", stock: 8 },
-        { name: "Café Moka", image: "src/img/cafe4.webp", description: "Café Moka avec des notes de chocolat.", price: "$11.99", stock: 12 },
-      ]
+      products: []  // Initialisation vide pour les données de produits
     };
+  },
+  async mounted() {
+    try {
+      // Appel à votre API backend pour récupérer les produits
+      const response = await axios.get('http://localhost:5174/adproducts');
+      this.products = response.data; // Mettre à jour les produits avec les données reçues
+    } catch (error) {
+      console.error('Erreur lors de la récupération des produits depuis le backend:', error);
+      alert('Erreur lors de la récupération des produits');
+    }
   }
 };
 </script>
@@ -72,7 +79,7 @@ export default {
 
 /* Style pour les détails du café */
 .cafe-details {
-  padding: 15px;
+  padding: 5px;
   background-color: #262525;
 }
 
