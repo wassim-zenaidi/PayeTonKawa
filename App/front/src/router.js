@@ -7,6 +7,7 @@ import Store from './components/StorePage.vue';
 import PurchasePage from './components/PurchasePage.vue';
 import AdPage from './components/AdPage.vue';
 import CustomerPage from './components/CustomerPage.vue';
+import ManageProducts from './components/ManageProducts.vue';
 
 
 const routes = [
@@ -15,6 +16,7 @@ const routes = [
   { path: '/Contact', component: Contact },
   { path: '/Store', component: Store },
   { path: '/AdPage', component: AdPage },
+  { path: '/ManageProducts', component: ManageProducts },
   { path: '/CustomerPage', component: CustomerPage },
   { path: '/PurchasePage', name: 'PurchasePage', component: PurchasePage },
 ];

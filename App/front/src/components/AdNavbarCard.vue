@@ -3,7 +3,7 @@
       <nav>
         <ul>
           <li><router-link to="/AdPage">Dashboard</router-link></li>
-          <li><router-link to="/AdPage">Inventaires</router-link></li>
+          <li><router-link to="/ManageProducts">Inventaires</router-link></li>
           <li><router-link to="/CustomerPage">Clients</router-link></li>
         </ul>
       </nav>
@@ -25,7 +25,7 @@
   <style scoped>
  
   header {
-    background-color: #262525;
+    background-color: #6050dc;
     padding: 20px;
     display: flex;
     justify-content: space-between;
