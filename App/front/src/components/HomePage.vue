@@ -29,10 +29,10 @@ export default {
 /* Styles CSS pour la bannière noire avec texte */
 .banner-overlay {
   position: relative;
-  margin-top: 125px;
+  margin-top: 45px;
   width: 100%;
   height: 300px; /* Hauteur ajustée selon votre besoin */
-  background-color: #262525; /* Fond noir */
+  background-color: #333; /* Fond noir */
   display: flex;
   justify-content: center; /* Centre le contenu horizontalement */
   align-items: center; /* Centre le contenu verticalement */

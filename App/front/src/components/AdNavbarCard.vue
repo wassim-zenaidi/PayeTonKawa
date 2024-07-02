@@ -3,8 +3,7 @@
       <nav>
         <ul>
           <li><router-link to="/AdPage">Dashboard</router-link></li>
-          <li><router-link to="/ManageProducts">Inventaires</router-link></li>
-          <li><router-link to="/CustomerPage">Clients</router-link></li>
+          <li><router-link to="/ManageProducts">Gestion des produits</router-link></li>
         </ul>
       </nav>
        <AuthCard></AuthCard>
@@ -25,7 +24,7 @@
   <style scoped>
  
   header {
-    background-color: #6050dc;
+    background-color: #333;
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -55,7 +54,7 @@
   }
   
   nav ul li a:hover {
-    color: #f3e5d9;
+    color: #f0c197;
   }
   
   .user-options a {

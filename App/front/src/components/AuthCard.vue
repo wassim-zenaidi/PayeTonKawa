@@ -75,7 +75,7 @@ export default {
 }
 
 .cart {
-  background-color: #fff; /* Couleur de fond */
+  background-color: #b4aeae; /* Couleur de fond */
   color: #262525; /* Couleur du texte */
   border: 1px solid #262525; /* Bordure légère */
 }

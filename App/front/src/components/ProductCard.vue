@@ -157,12 +157,12 @@ export default {
 
 .cafe-price {
   font-weight: bold;
-  color: #cfa78e;
+  color: #e7aa84;
   font-size: 1.1rem;
 }
 
 .cafe-stock {
-  color: #cfa78e;
+  color: #e7aa84;
   font-size: 0.9rem;
 }
 
@@ -179,8 +179,8 @@ export default {
 
 /* Style pour le bouton acheter */
 .buy-button {
-  background-color: #cfa78e;
-  color: white;
+  background-color: #b99077;
+  color: hsl(0, 0%, 100%);
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -202,7 +202,7 @@ export default {
 }
 
 .buy-button:hover {
-  background-color: #b58976;
+  background-color: #e7aa84;
 }
 
 /* Style pour la modal */
@@ -244,7 +244,7 @@ export default {
 }
 
 .modal-buttons button {
-  background-color: #cfa78e;
+  background-color: #e7aa84;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -255,6 +255,6 @@ export default {
 }
 
 .modal-buttons button:hover {
-  background-color: #b58976;
+  background-color: #e7aa84;
 }
 </style>
