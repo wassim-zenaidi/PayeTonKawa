@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div class="container">
     <AdNavbarCard></AdNavbarCard>
     <iframe
-      width="100%"
-      height="600px"
+      class="powerbi-iframe"
       :src="powerBiEmbedUrl"
       frameborder="0"
       allowFullScreen="true"
     ></iframe>
+    <footer>
+      <p>&copy; 2024 Flower44. Tous droits réservés. 💮</p>
+    </footer>
   </div>
 </template>
 
@@ -28,5 +30,33 @@ export default {
 </script>
 
 <style scoped>
-/* Ajoutez ici les styles pour votre composant */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.powerbi-iframe {
+  flex: 1;
+  border: none;
+}
+
+footer {
+  background-color: #333; /* Marron noisette */
+  color: #b4aeae;
+  text-align: center;
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+header {
+  background-color: #333;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
 </style>

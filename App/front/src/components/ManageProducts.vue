@@ -241,13 +241,12 @@ table {
 th, td {
   border: 1px solid #ddd;
   padding: 8px;
-  text-align: left;
+  text-align: center; /* Centre le texte dans les cellules */
 }
 
 th {
   background-color: #e7aa84;
   color: white;
-  text-align: center; /* Centrer le texte dans les cellules d'en-tête */
 }
 
 .modify-button,
